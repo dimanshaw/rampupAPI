@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { UpdateResult } from 'typeorm';
 import { createStudentInput } from '../dto/create-student-input';
 import { StudentEntity } from '../models/student.entity';
 import { Student } from '../models/student.interface';
@@ -17,6 +18,11 @@ export class StudentController {
     @Post('getAllStudents')
     getAllStudents(): Observable<Student[]>{
         return this.studentService.findAll();
+    }
+
+    @Post('updateStudent')
+    updateStudent(@Body() studentDetails: StudentEntity): Observable<UpdateResult>{
+        return (this.studentService.updateStudent(studentDetails));
     }
 
     @Get('findAll')
