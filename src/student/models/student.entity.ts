@@ -1,22 +1,30 @@
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('student')
+@ObjectType()
 export class StudentEntity{
     @PrimaryGeneratedColumn()
+    @Field(type => Int)
     id: number;
 
     @Column()
-    name: string;
+    @Field()
+    name?: string;
 
     @Column()
-    email: string;
+    @Field()
+    email?: string;
 
     @Column()
-    dateOfBirth: Date;
+    @Field()
+    dateOfBirth?: Date;
 
     @Column()
-    age: number;
+    @Field()
+    age?: number;
 
     @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
+    @Field()
     createdAt: Date;
 }
