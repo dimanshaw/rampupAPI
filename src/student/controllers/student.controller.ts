@@ -22,6 +22,8 @@ export class StudentController {
 
     @Post('updateStudent')
     updateStudent(@Body() studentDetails: StudentEntity): Observable<UpdateResult>{
+
+        console.log("Updating Student ", studentDetails)
         return (this.studentService.updateStudent(studentDetails));
     }
 
