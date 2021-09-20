@@ -24,6 +24,10 @@ export class StudentEntity{
     @Field()
     age?: number;
 
+    @Column({type: 'boolean', default: () => 'false'})
+    @Field()
+    isDeleted: boolean;
+
     @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
     @Field()
     createdAt: Date;

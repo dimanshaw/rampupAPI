@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { Repository, UpdateResult } from 'typeorm';
@@ -24,8 +24,9 @@ export class StudentService {
     }
 
 
-    findAll(): Observable<StudentEntity[]>{
+    findAll(@Query('isDeleted') isDeleted: boolean = true): Observable<StudentEntity[]>{
         console.log("Find All Studnets")
-       return from(this.studentRepository.find()); 
+        
+       return from(this.studentRepository.find({isDeleted: false})); 
     }
 }
