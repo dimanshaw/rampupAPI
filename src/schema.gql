@@ -19,11 +19,13 @@ scalar DateTime
 
 type Query {
   students: [StudentEntity!]!
+  hello: String!
 }
 
 type Mutation {
   createStudent(createStudentInput: createStudentInput!): StudentEntity!
-  updateStudent(updateStudentInput: createStudentInput!): StudentEntity!
+  updateStudent(input: createStudentInput!, id: Float!): Boolean!
+  deleteStudent(id: Float!): Boolean!
 }
 
 input createStudentInput {

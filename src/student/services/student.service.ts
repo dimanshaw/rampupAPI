@@ -40,6 +40,9 @@ export class StudentService {
     createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
         const newStudent = this.studentRepository.create(createStudentInput);
         return this.studentRepository.save(newStudent);
+
+        //post graphile - bulk update - to db
+        
     }
 
     async findAll(): Promise<StudentEntity[]>{

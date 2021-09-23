@@ -1,9 +1,9 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('student')
 @ObjectType()
-export class StudentEntity{
+export class StudentEntity extends BaseEntity{
     @PrimaryGeneratedColumn()
     @Field(type => Int)
     id: number;
@@ -16,7 +16,7 @@ export class StudentEntity{
     @Field()
     email?: string;
 
-    @Column({nullable: true})
+    @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true})
     @Field()
     dateOfBirth?: Date;
 
