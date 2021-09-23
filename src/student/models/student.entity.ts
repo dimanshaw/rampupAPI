@@ -12,15 +12,15 @@ export class StudentEntity{
     @Field()
     name?: string;
 
-    @Column()
+    @Column({nullable: true})
     @Field()
     email?: string;
 
-    @Column()
+    @Column({nullable: true})
     @Field()
     dateOfBirth?: Date;
 
-    @Column()
+    @Column({nullable: true})
     @Field()
     age?: number;
 

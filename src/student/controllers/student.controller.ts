@@ -15,21 +15,21 @@ export class StudentController {
         return this.studentService.createStudent(createStudentInput);
     }
 
-    @Post('getAllStudents')
-    getAllStudents(): Observable<Student[]>{
-        return this.studentService.findAll();
-    }
+    // @Post('getAllStudents')
+    // getAllStudents(): Observable<Student[]>{
+    //     return this.studentService.findAll();
+    // }
 
-    @Post('updateStudent')
-    updateStudent(@Body() studentDetails: StudentEntity): Observable<UpdateResult>{
+    // @Post('updateStudent')
+    // updateStudent(@Body() studentDetails: StudentEntity): Observable<UpdateResult>{
 
-        console.log("Updating Student ", studentDetails)
-        return (this.studentService.updateStudent(studentDetails));
-    }
+    //     console.log("Updating Student ", studentDetails)
+    //     return (this.studentService.updateStudent(studentDetails));
+    // }
 
-    @Get('findAll')
-    findAll(): Observable<Student[]>{
-        return this.studentService.findAll();
-    }
+    // @Get('findAll')
+    // findAll(): Observable<Student[]>{
+    //     return this.studentService.findAll();
+    // }
 }
  

@@ -13,20 +13,42 @@ export class StudentService {
         private readonly studentRepository: Repository<StudentEntity>
     ){}
 
-    createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
-       const newStudent = this.studentRepository.create(createStudentInput);
-        return (this.studentRepository.save(newStudent));
-    }
+    // createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
+    //    const newStudent = this.studentRepository.create(createStudentInput);
+    //     return (this.studentRepository.save(newStudent));
+    // }
 
-    updateStudent(student): Observable<UpdateResult>{
+    updateStudenta(student): Observable<UpdateResult>{
         console.log("Student to update ", student);
         return from(this.studentRepository.save(student));
     }
 
 
-    findAll(@Query('isDeleted') isDeleted: boolean = true): Observable<StudentEntity[]>{
-        console.log("Find All Studnets")
-        
-       return from(this.studentRepository.find({isDeleted: false})); 
+
+
+
+
+
+
+    // #####################
+
+    updateStudent(createStudentInput: createStudentInput): Promise<UpdateResult>{
+        const newStudent = this.studentRepository.create(createStudentInput);
+        return this.studentRepository.update(newStudent.id, newStudent);
     }
+
+    createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
+        const newStudent = this.studentRepository.create(createStudentInput);
+        return this.studentRepository.save(newStudent);
+    }
+
+    async findAll(): Promise<StudentEntity[]>{
+        return this.studentRepository.find();
+    }
+
+    // findAll(@Query('isDeleted') isDeleted: boolean = true): Observable<StudentEntity[]>{
+    //     console.log("Find All Studnets")
+        
+    //    return from(this.studentRepository.find({isDeleted: false})); 
+    // }
 }

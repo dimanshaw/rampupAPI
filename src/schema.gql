@@ -23,6 +23,7 @@ type Query {
 
 type Mutation {
   createStudent(createStudentInput: createStudentInput!): StudentEntity!
+  updateStudent(updateStudentInput: createStudentInput!): StudentEntity!
 }
 
 input createStudentInput {
