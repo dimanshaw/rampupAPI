@@ -14,4 +14,6 @@ export class createStudentInput {
     age: number;
     @Field({nullable: true})
     createdAt: Date;
+    @Field({nullable: true})
+    isDeleted: boolean;
 }

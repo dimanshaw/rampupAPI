@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Field, InputType, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Observable } from 'rxjs';
 import { UpdateResult } from 'typeorm';
 import { createStudentInput } from '../dto/create-student-input';
@@ -6,6 +6,9 @@ import { createStudentInput } from '../dto/create-student-input';
 import { StudentEntity } from '../models/student.entity';
 
 import { StudentService } from '../services/student.service';
+
+
+
 
 @Resolver((of) => StudentEntity)
 export class StudentResolver {
@@ -15,8 +18,11 @@ export class StudentResolver {
   constructor(private studentService: StudentService) {}
 
   @Query((returns) => [StudentEntity])
-  students(): Promise<StudentEntity[]> {
-    return StudentEntity.find();
+  students(
+      @Args('isDeleted') isDeleted: boolean
+  ): Promise<StudentEntity[]> {
+    //StudentEntity.find();
+    return this.studentService.findAll(isDeleted);
   }
 
   @Query(() => String)
@@ -32,18 +38,19 @@ export class StudentResolver {
     return student;
   }
 
+
   @Mutation(() => Boolean)
   async updateStudent(
-      @Args('id') id: number,
       @Args('input') input: createStudentInput
   ){
-    await StudentEntity.update({id}, input);
+    await this.studentService.updateStudent(input);
     return true;
   }
 
-  @Mutation(() => Boolean)
-  async deleteStudent(@Args('id') id: number) {
-    await StudentEntity.delete({ id });
-    return true;
+  @Mutation(() => Number)
+  async deleteStudentPermanant(@Args('id') id: number) {
+    const student = await StudentEntity.delete({ id });
+
+    return student.affected;
   }
 }

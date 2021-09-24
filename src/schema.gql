@@ -18,14 +18,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  students: [StudentEntity!]!
+  students(isDeleted: Boolean!): [StudentEntity!]!
   hello: String!
 }
 
 type Mutation {
   createStudent(createStudentInput: createStudentInput!): StudentEntity!
-  updateStudent(input: createStudentInput!, id: Float!): Boolean!
-  deleteStudent(id: Float!): Boolean!
+  updateStudent(input: createStudentInput!): Boolean!
+  deleteStudentPermanant(id: Float!): Float!
 }
 
 input createStudentInput {
@@ -35,4 +35,5 @@ input createStudentInput {
   dateOfBirth: DateTime
   age: Float
   createdAt: DateTime
+  isDeleted: Boolean
 }

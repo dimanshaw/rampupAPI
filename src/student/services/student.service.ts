@@ -13,15 +13,15 @@ export class StudentService {
         private readonly studentRepository: Repository<StudentEntity>
     ){}
 
-    // createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
+    // createStudentFromFile(createStudentInput: createStudentInput): Promise<StudentEntity>{
     //    const newStudent = this.studentRepository.create(createStudentInput);
     //     return (this.studentRepository.save(newStudent));
     // }
 
-    updateStudenta(student): Observable<UpdateResult>{
-        console.log("Student to update ", student);
-        return from(this.studentRepository.save(student));
-    }
+    // updateStudenta(student): Observable<UpdateResult>{
+    //     console.log("Student to update ", student);
+    //     return from(this.studentRepository.save(student));
+    // }
 
 
 
@@ -34,24 +34,26 @@ export class StudentService {
 
     updateStudent(createStudentInput: createStudentInput): Promise<UpdateResult>{
         const newStudent = this.studentRepository.create(createStudentInput);
-        return this.studentRepository.update(newStudent.id, newStudent);
+        console.log("Update Student ", createStudentInput.id);
+        return this.studentRepository.update(createStudentInput.id, newStudent);
     }
 
     createStudent(createStudentInput: createStudentInput): Promise<StudentEntity>{
         const newStudent = this.studentRepository.create(createStudentInput);
         return this.studentRepository.save(newStudent);
 
+        
         //post graphile - bulk update - to db
         
     }
 
-    async findAll(): Promise<StudentEntity[]>{
-        return this.studentRepository.find();
-    }
-
-    // findAll(@Query('isDeleted') isDeleted: boolean = true): Observable<StudentEntity[]>{
-    //     console.log("Find All Studnets")
-        
-    //    return from(this.studentRepository.find({isDeleted: false})); 
+    // async findAll(): Promise<StudentEntity[]>{
+    //     return this.studentRepository.find();
     // }
+
+    findAll(isDeleted: boolean = true): Promise<StudentEntity[]>{
+        console.log("Find All Studnets")
+        
+       return (this.studentRepository.find({isDeleted: false})); 
+    }
 }
