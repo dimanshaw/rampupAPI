@@ -30,12 +30,13 @@ export class StudentResolver {
     return 'hi';
   }
 
-  @Mutation((returns) => StudentEntity)
+  @Mutation((returns) => Boolean)
   async createStudent(
     @Args('createStudentInput') createStudentInput: createStudentInput,
   ) {
-    const student = await StudentEntity.create(createStudentInput).save();
-    return student;
+    //const student = await StudentEntity.create(createStudentInput).save();
+    this.studentService.createStudent(createStudentInput)
+    return true;
   }
 
 

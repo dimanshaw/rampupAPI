@@ -23,7 +23,7 @@ type Query {
 }
 
 type Mutation {
-  createStudent(createStudentInput: createStudentInput!): StudentEntity!
+  createStudent(createStudentInput: createStudentInput!): Boolean!
   updateStudent(input: createStudentInput!): Boolean!
   deleteStudentPermanant(id: Float!): Float!
 }
