@@ -26,6 +26,9 @@ export class StudentService {
 
 
 
+    // async findAll(): Promise<StudentEntity[]>{
+    //     return this.studentRepository.find();
+    // }
 
 
 
@@ -47,9 +50,6 @@ export class StudentService {
         
     }
 
-    // async findAll(): Promise<StudentEntity[]>{
-    //     return this.studentRepository.find();
-    // }
 
     findAll(isDeleted: boolean = true): Promise<StudentEntity[]>{
         console.log("Find All Studnets")
@@ -57,3 +57,5 @@ export class StudentService {
        return (this.studentRepository.find({isDeleted: false})); 
     }
 }
+
+

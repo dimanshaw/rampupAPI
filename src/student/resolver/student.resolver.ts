@@ -43,9 +43,12 @@ export class StudentResolver {
   @Mutation(() => Boolean)
   async updateStudent(
       @Args('input') input: createStudentInput
-  ){
-    await this.studentService.updateStudent(input);
-    return true;
+  ) {
+      
+    const status = await this.studentService.updateStudent(input);
+    console.log("Update status ", status)
+    
+    return status.affected
   }
 
   @Mutation(() => Number)
