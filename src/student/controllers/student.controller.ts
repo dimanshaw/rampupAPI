@@ -11,7 +11,6 @@ export class StudentController {
     constructor(private studentService: StudentService){}
     @Post()
     createStudent(@Body() createStudentInput: createStudentInput): Promise<StudentEntity>{
-        console.log("Controller create studetn ", createStudentInput)
         return this.studentService.createStudent(createStudentInput);
     }
 

@@ -6,7 +6,7 @@ type StudentEntity {
   id: Int!
   name: String!
   email: String!
-  dateOfBirth: DateTime!
+  dateofbirth: DateTime!
   age: Float!
   isDeleted: Boolean!
   createdAt: DateTime!

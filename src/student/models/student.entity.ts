@@ -18,7 +18,7 @@ export class StudentEntity extends BaseEntity{
 
     @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true})
     @Field()
-    dateOfBirth?: Date;
+    dateofbirth?: Date;
 
     @Column({nullable: true})
     @Field()
